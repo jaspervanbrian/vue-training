@@ -17,6 +17,14 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+import ExampleComponent from './components/ExampleComponent.vue';
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+    	message: ExampleComponent.data().message,
+    },
+    components: {
+    	ExampleComponent
+    }
 });
