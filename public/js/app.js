@@ -47341,15 +47341,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            message: "Hello World"
+            message: "Hello World",
+            title: "Users set in Vue (this title too)",
+            newUser: "",
+            users: ["John", "Jane", "Lorem Ipsum"],
+            alerts: [{ "Primary": "alert alert-primary" }, { "Secondary": "alert alert-secondary" }, { "Informative": "alert alert-info" }, { "Success": "alert alert-success" }, { "Warning": "alert alert-warning" }, { "Danger": "alert alert-danger" }, { "Light": "alert alert-light" }, { "Dark": "alert alert-dark" }]
         };
+    },
+
+    methods: {
+        addUser: function addUser() {
+            if (this.newUser.trim() !== "") {
+                this.users.push(this.newUser);
+                this.newUser = "";
+            }
+        }
     },
     mounted: function mounted() {
         console.log('Component mounted.');
+    },
+
+    directives: {
+        focus: {
+            inserted: function inserted(el) {
+                el.focus();
+            }
+        }
     }
 });
 
@@ -47382,7 +47424,8 @@ var render = function() {
                   rawName: "v-model",
                   value: _vm.message,
                   expression: "message"
-                }
+                },
+                { name: "focus", rawName: "v-focus" }
               ],
               staticClass: "form-control",
               attrs: { type: "text" },
@@ -47396,6 +47439,79 @@ var render = function() {
                 }
               }
             })
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center mt-4" }, [
+      _c("div", { staticClass: "col-8" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c(
+            "div",
+            { staticClass: "card-header", attrs: { title: _vm.title } },
+            [_vm._v("Users")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.users, function(user) {
+                return _c("li", {
+                  staticClass: "list-group-item",
+                  domProps: { textContent: _vm._s(user) }
+                })
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newUser,
+                      expression: "newUser"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Name" },
+                  domProps: { value: _vm.newUser },
+                  on: {
+                    keydown: function($event) {
+                      if (
+                        !("button" in $event) &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.addUser($event)
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newUser = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    on: { click: _vm.addUser }
+                  },
+                  [_vm._v("Add User")]
+                )
+              ])
+            ])
           ])
         ])
       ])
