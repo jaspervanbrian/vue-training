@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -20,13 +20,13 @@
         </div>
     </div>
     <div class="row justify-content-center mt-4">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     Vue Training
                 </div>
                 <div class="card-body">
-                    <example-component></example-component>
+                    <friend-list></friend-list>
                 </div>
             </div>
         </div>

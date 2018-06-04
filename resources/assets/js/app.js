@@ -15,16 +15,22 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// window.axios.defaults.headers.common = {
+//     'X-Requested-With': 'XMLHttpRequest',
+//     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+// };
 
-import ExampleComponent from './components/ExampleComponent.vue';
+Vue.component('friend', require('./components/FriendComponents/Friend.vue'));
+Vue.component('friend-list', require('./components/FriendComponents/FriendList.vue'));
+
+import FriendList from './components/FriendComponents/FriendList.vue';
 
 const app = new Vue({
     el: '#app',
     data: {
-    	message: ExampleComponent.data().message,
+    	message: FriendList.data().message,
     },
     components: {
-    	ExampleComponent
+    	FriendList
     }
 });

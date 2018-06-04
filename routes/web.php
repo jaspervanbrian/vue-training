@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/friends', 'FriendController@index');
+Route::post('/friends', 'FriendController@create');
+Route::post('/friends/{friend}/update', 'FriendController@update');
+Route::post('/friends/{friend}/delete', 'FriendController@destroy');
