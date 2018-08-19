@@ -28,7 +28,7 @@
 		},
 		data() {
 			return {
-				editing: [],
+				editing: {},
 			}
 		},
 		methods: {
