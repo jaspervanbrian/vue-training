@@ -75,9 +75,9 @@
         },
         methods: {
             getFriends() {
-                axios.get("http://127.0.0.1:8000/friends")
+                axios.get("http://127.0.0.1:8000/api/friends")
                 .then((response) => {
-                    this.friends = response.data;
+                    this.friends = response.data.data;
                 })
                 .catch((response) => {
                     console.log(response);
@@ -85,11 +85,11 @@
             },
             addFriend() {
                 if (this.newFriend.trim() !== "") {
-                    axios.post("http://127.0.0.1:8000/friends", {
+                    axios.post("http://127.0.0.1:8000/api/friends", {
                         name: this.newFriend,
                     })
                     .then((response) => {
-                        this.friends = response.data;
+                        this.friends.push(response.data.data);
                         this.newFriend = "";
                     })
                     .catch((response) => {

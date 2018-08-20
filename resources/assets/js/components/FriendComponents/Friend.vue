@@ -13,7 +13,10 @@
 					<button class="btn btn-outline-danger" @click="deleteFriend(friend.id)">Remove</button>
 				</div>
 			</div>
-			<small v-text="fromNow(friend.created_at)"></small>
+			<small v-text="fromNow(friend.created_at.date)"></small>
+			<p>
+				<small>{{ "Updated: " + fromNow(friend.updated_at.date) }}</small>
+			</p>
 		</a>
 	</div>
 </template>
@@ -39,7 +42,7 @@
 				this.$delete(this.editing, id);
 			},
 			updateFriend(id, name) {
-				axios.post(`http://127.0.0.1:8000/friends/${id}/update`, {
+				axios.put(`http://127.0.0.1:8000/api/friends/${id}`, {
 					name,
 				})
 				.then((response) => {
@@ -51,7 +54,7 @@
 				});
 			},
 			deleteFriend(id) {
-				axios.post(`http://127.0.0.1:8000/friends/${id}/delete`)
+				axios.delete(`http://127.0.0.1:8000/api/friends/${id}`)
 				.then((response) => {
 					this.$emit("done");
 				})
@@ -60,7 +63,7 @@
 				});
 			},
 			fromNow(date) {
-				return moment(date).fromNow();
+				return moment.utc(date, "YYYY-MM-DD h:mm:ss").fromNow();
 			}
 		}
 	}

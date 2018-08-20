@@ -64023,6 +64023,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -64047,7 +64050,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		updateFriend: function updateFriend(id, name) {
 			var _this = this;
 
-			axios.post("http://127.0.0.1:8000/friends/" + id + "/update", {
+			axios.put("http://127.0.0.1:8000/api/friends/" + id, {
 				name: name
 			}).then(function (response) {
 				_this.$delete(_this.editing, id);
@@ -64059,14 +64062,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		deleteFriend: function deleteFriend(id) {
 			var _this2 = this;
 
-			axios.post("http://127.0.0.1:8000/friends/" + id + "/delete").then(function (response) {
+			axios.delete("http://127.0.0.1:8000/api/friends/" + id).then(function (response) {
 				_this2.$emit("done");
 			}).catch(function (response) {
 				console.log(response);
 			});
 		},
 		fromNow: function fromNow(date) {
-			return moment(date).fromNow();
+			return moment.utc(date, "YYYY-MM-DD h:mm:ss").fromNow();
 		}
 	}
 });
@@ -64185,8 +64188,16 @@ var render = function() {
               ),
           _vm._v(" "),
           _c("small", {
-            domProps: { textContent: _vm._s(_vm.fromNow(friend.created_at)) }
-          })
+            domProps: {
+              textContent: _vm._s(_vm.fromNow(friend.created_at.date))
+            }
+          }),
+          _vm._v(" "),
+          _c("p", [
+            _c("small", [
+              _vm._v(_vm._s("Updated: " + _vm.fromNow(friend.updated_at.date)))
+            ])
+          ])
         ]
       )
     })
@@ -64273,8 +64284,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getFriends: function getFriends() {
             var _this = this;
 
-            axios.get("http://127.0.0.1:8000/friends").then(function (response) {
-                _this.friends = response.data;
+            axios.get("http://127.0.0.1:8000/api/friends").then(function (response) {
+                _this.friends = response.data.data;
             }).catch(function (response) {
                 console.log(response);
             });
@@ -64283,10 +64294,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             if (this.newFriend.trim() !== "") {
-                axios.post("http://127.0.0.1:8000/friends", {
+                axios.post("http://127.0.0.1:8000/api/friends", {
                     name: this.newFriend
                 }).then(function (response) {
-                    _this2.friends = response.data;
+                    _this2.friends.push(response.data.data);
                     _this2.newFriend = "";
                 }).catch(function (response) {
                     console.log(response.data);

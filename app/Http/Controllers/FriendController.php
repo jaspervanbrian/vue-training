@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Friend;
+use App\Http\Resources\Friend as FriendResource;
 
 class FriendController extends Controller
 {
