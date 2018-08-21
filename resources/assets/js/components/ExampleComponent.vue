@@ -20,7 +20,8 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	@import "~bulma/sass/utilities/_all.sass";
+	@import "~bulma/sass/elements/box.sass";
 	@import "~bulma/sass/components/modal.sass";
 </style>
