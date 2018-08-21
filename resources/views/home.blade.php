@@ -31,5 +31,11 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12">
+            <button class="btn btn-primary" @click="isActive = true">Appear</button>
+            <example-component v-if="isActive" @close="isActive = false"></example-component>
+        </div>
+    </div>
 </div>
 @endsection
