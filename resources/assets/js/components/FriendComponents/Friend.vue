@@ -6,17 +6,15 @@
 				<button class="btn btn-info" @click="updateFriend(friend.id, editing[friend.id])">Save</button>
 				<button class="btn btn-danger" @click="cancelEdit(friend.id)">Cancel</button>
 			</div>
-			<div class="d-flex w-100 justify-content-between" v-else>
-				<h5 class="mb-1" v-text="friend.name"></h5>
-				<div>
+			<div class="row" v-else>
+				<div class="col-9" @click="showmodal(friend.name, friend.created_at, friend.updated_at)">
+					<h5 class="mb-1" v-text="friend.name"></h5>
+				</div>
+				<div class="col-3">
 					<button class="btn btn-outline-info" @click="editFriend(friend.id, friend.name)">Edit</button>
 					<button class="btn btn-outline-danger" @click="deleteFriend(friend.id)">Remove</button>
 				</div>
 			</div>
-			<small v-text="fromNow(friend.created_at.date)"></small>
-			<p>
-				<small>{{ "Updated: " + fromNow(friend.updated_at.date) }}</small>
-			</p>
 		</a>
 	</div>
 </template>
@@ -64,7 +62,10 @@
 			},
 			fromNow(date) {
 				return moment.utc(date, "YYYY-MM-DD h:mm:ss").fromNow();
-			}
+			},
+            showmodal(name, created_at, updated_at) {
+                this.$emit("showmodal", name, created_at, updated_at);
+            }
 		}
 	}
 </script>

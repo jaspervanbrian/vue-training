@@ -20,12 +20,27 @@ window.Vue = require('vue');
 //     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 // };
 
-Vue.component('friend-list', require('./components/FriendComponents/FriendList.vue'));
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import FriendList from './components/FriendComponents/FriendList.vue';
+import ModalComponent from './components/ModalComponent.vue';
 
 const app = new Vue({
     el: '#app',
     data: {
     	isActive: false,
+    	name: "",
+    	created_at: "",
+    	updated_at: "",
+    },
+    components: {
+    	ModalComponent, FriendList
+    },
+    methods: {
+    	showmodal(name, created_at, updated_at) {
+    		console.log(name);
+			this.isActive = true;
+			this.name = name;
+			this.created_at = created_at;
+			this.updated_at = updated_at;
+		}
     }
 });

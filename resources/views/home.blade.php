@@ -26,16 +26,11 @@
                     Vue Training
                 </div>
                 <div class="card-body">
-                    <friend-list></friend-list>
+                    <friend-list @showmodal="showmodal"></friend-list>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-4">
-        <div class="col-12">
-            <button class="btn btn-primary" @click="isActive = true">Appear</button>
-            <example-component v-if="isActive" @close="isActive = false"></example-component>
-        </div>
-    </div>
+    <modal-component :name="name" :created_at="created_at" :updated_at="updated_at" @closemodal="isActive = false" v-if="isActive"></modal-component>
 </div>
 @endsection

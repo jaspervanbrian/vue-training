@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <button @click="changeButton" :class="button">Toggle me!</button>
-                        <friend :friends="friends" @done="getFriends"></friend>
+                        <friend :friends="friends" @done="getFriends" @showmodal="showmodal"></friend>
                     </div>
                     <div class="card-footer">
                         <div class="row">
@@ -104,6 +104,9 @@
                     this.buttonIndex++;
                 }
                 this.button = this.buttons[this.buttonIndex];
+            },
+            showmodal(name, created_at, updated_at) {
+                this.$emit("showmodal", name, created_at, updated_at);
             }
         },
         mounted() {

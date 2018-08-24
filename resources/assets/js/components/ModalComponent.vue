@@ -3,7 +3,11 @@
 		<div class="modal-background"></div>
 		<div class="modal-content">
 			<div class="box">
-				<p>Hello</p>
+				<p>{{ name }}</p>
+				<small v-text="fromNow(created_at.date)"></small>
+				<p>
+					<small>{{ "Updated: " + fromNow(updated_at.date) }}</small>
+				</p>
 			</div>
 		</div>
 		<button class="modal-close is-large" aria-label="close" @click="close"></button>
@@ -12,9 +16,23 @@
 
 <script>
 	export default {
+		props: {
+			name: {
+				type: String,
+			},
+			created_at: {
+				type: Object,
+			},
+			updated_at: {
+				type: Object,
+			}
+		},
 		methods: {
 			close(){
-				this.$emit("close");
+				this.$emit("closemodal");
+			},
+			fromNow(date) {
+				return moment.utc(date, "YYYY-MM-DD h:mm:ss").fromNow();
 			}
 		}
 	}
